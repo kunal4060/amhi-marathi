@@ -95,7 +95,7 @@ a { color: var(--bhagwa); }
 .btn-ghost { border: 2px solid var(--maroon); color: var(--maroon); }
 .btn-ghost:hover { background: var(--maroon); color: var(--ivory); }
 .toran { margin-top: 44px; line-height: 0; }
-.toran svg { width: 100%; height: 100px; }
+.toran svg { width: 100%; height: 78px; }
 .toran .sway { transform-box: fill-box; transform-origin: 50% 0; animation: toran-sway 6s ease-in-out infinite alternate; }
 @keyframes toran-sway { from { transform: rotate(-1.8deg); } to { transform: rotate(1.8deg); } }
 @media (prefers-reduced-motion: reduce) { .toran .sway { animation: none; } }
@@ -207,6 +207,11 @@ section.block { padding: 84px 0; }
   background: var(--maroon-deep); border: 1px solid rgba(201, 162, 39, .35);
   display: flex; align-items: flex-end;
 }
+.photo-tile img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.photo-tile .ph-cap { position: relative; z-index: 1; }
 .photo-tile .ph-mark {
   position: absolute; top: -12px; left: 8px; font-family: var(--font-display);
   font-size: 7.5rem; line-height: 1; color: var(--ivory); opacity: .1;
