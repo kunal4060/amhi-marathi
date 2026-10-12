@@ -1,0 +1,42 @@
+/* Per-district VIT-AP student counts.
+   STATUS: SAMPLE / PLACEHOLDER DATA — replace with real counts when available.
+   Missing districts are treated as 0. */
+const STUDENT_DATA = {
+ "Pune": 142,
+ "Mumbai Suburban": 98,
+ "Thane": 87,
+ "Mumbai City": 76,
+ "Nashik": 64,
+ "Nagpur": 58,
+ "Chhatrapati Sambhajinagar": 47,
+ "Kolhapur": 41,
+ "Satara": 36,
+ "Solapur": 33,
+ "Sangli": 29,
+ "Ahilyanagar": 27,
+ "Jalgaon": 24,
+ "Latur": 22,
+ "Nanded": 21,
+ "Amravati": 19,
+ "Raigad": 18,
+ "Chandrapur": 15,
+ "Yavatmal": 14,
+ "Buldhana": 13,
+ "Dhule": 12,
+ "Beed": 12,
+ "Dharashiv": 11,
+ "Jalna": 10,
+ "Parbhani": 10,
+ "Akola": 9,
+ "Ratnagiri": 8,
+ "Palghar": 8,
+ "Wardha": 7,
+ "Bhandara": 6,
+ "Gondia": 6,
+ "Hingoli": 5,
+ "Washim": 5,
+ "Nandurbar": 4,
+ "Sindhudurg": 4,
+ "Gadchiroli": 3
+};
+const STUDENT_DATA_IS_SAMPLE = true;
