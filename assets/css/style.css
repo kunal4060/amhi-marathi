@@ -337,3 +337,65 @@ footer { background: var(--ink); color: #B9A98E; padding: 44px 0 30px; font-size
   section.block { padding: 64px 0; }
   .photo-grid { grid-template-columns: 1fr; }
 }
+
+/* ---------- paper grain (subtle craft texture) ---------- */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 2000; pointer-events: none;
+  opacity: .05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* ---------- hero photo (arch-framed, hand-crafted) ---------- */
+.hero-photo { position: relative; max-width: 400px; margin: 44px auto 0; }
+.hero-photo img {
+  display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover;
+  border-radius: 200px 200px var(--radius) var(--radius);
+  border: 3px solid var(--kesari);
+  outline: 1px solid var(--zari); outline-offset: 6px;
+  box-shadow: 0 18px 44px rgba(110, 29, 29, .18);
+  background: var(--ivory-deep);
+}
+.hero-photo figcaption { margin-top: 14px; font-size: .9rem; color: var(--muted); }
+.hero-photo figcaption .mr { color: var(--maroon); font-weight: 700; }
+
+/* ---------- hand-drawn doodles ---------- */
+.doodle { position: absolute; pointer-events: none; }
+.doodle-arrow { width: 74px; height: 58px; left: -84px; top: -34px; transform: rotate(-8deg); opacity: .85; }
+.doodle-flourish { position: static; display: block; width: 120px; height: 22px; margin: 10px auto 0; opacity: .9; }
+@media (max-width: 640px) { .doodle-arrow { display: none; } }
+
+/* ---------- event countdown ---------- */
+.countdown {
+  display: inline-flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center;
+  margin-top: 22px; padding: 12px 22px; border: 1.5px solid var(--kesari);
+  border-radius: 999px; background: var(--card);
+}
+.cd-label { font-size: 1.05rem; color: var(--maroon); font-weight: 700; }
+.cd-label .mr { font-size: 1.25rem; }
+.cd-units { display: inline-flex; align-items: baseline; gap: 8px; }
+.cd-units span:not(.cd-sep) { display: inline-flex; flex-direction: column; align-items: center; min-width: 52px; }
+.cd-units b { font-family: var(--font-display); font-size: 1.5rem; color: var(--bhagwa); font-variant-numeric: tabular-nums; }
+.cd-units small { font-size: .68rem; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; }
+.cd-sep { color: var(--zari); font-weight: 700; }
+.cd-done { font-size: 1.3rem; color: var(--maroon); font-weight: 700; }
+
+/* ---------- word of the day ---------- */
+.word-section { background: var(--ivory-deep); }
+.shabd-card {
+  max-width: 560px; margin: 0 auto; text-align: center;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 40px 32px; box-shadow: 0 10px 30px rgba(110, 29, 29, .07);
+  position: relative;
+}
+.shabd-card::before, .shabd-card::after {
+  content: ""; position: absolute; top: 14px; width: 26px; height: 26px;
+  border: 2px solid var(--zari); border-radius: 50%; opacity: .55;
+}
+.shabd-card::before { left: 16px; } .shabd-card::after { right: 16px; }
+.shabd-word { font-family: var(--font-display); font-size: clamp(2.6rem, 7vw, 3.6rem); color: var(--maroon); line-height: 1.2; }
+.shabd-translit { font-size: .85rem; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin: 4px 0 14px; }
+.shabd-meaning { font-size: 1.12rem; color: var(--ink); }
+.shabd-meaning .gloss { color: var(--bhagwa); font-weight: 700; }
+.shabd-example { margin-top: 12px; font-size: .98rem; color: var(--ink-soft); font-style: italic; }
+.shabd-example .mr { font-style: normal; color: var(--maroon); }
