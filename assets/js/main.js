@@ -36,25 +36,6 @@
     revealEls.forEach(function (el) { el.classList.add("visible"); });
   }
 
-  /* ---------- hero Maharashtra silhouette ---------- */
-  var heroSvg = document.getElementById("heroSilhouette");
-  if (heroSvg && typeof DISTRICTS !== "undefined") {
-    var hns = "http://www.w3.org/2000/svg";
-    var g = document.createElementNS(hns, "g");
-    g.setAttribute("transform", "translate(90,70) scale(1.08)");
-    DISTRICTS.forEach(function (d) {
-      var p = document.createElementNS(hns, "path");
-      p.setAttribute("d", d.d);
-      p.setAttribute("fill", "#E8720C");
-      p.setAttribute("fill-opacity", "0.22");
-      p.setAttribute("stroke", "#B4500A");
-      p.setAttribute("stroke-opacity", "0.4");
-      p.setAttribute("stroke-width", "1.5");
-      g.appendChild(p);
-    });
-    heroSvg.appendChild(g);
-  }
-
   /* ---------- district map ---------- */
   var svg = document.getElementById("districtMap");
   var tip = document.getElementById("mapTip");
