@@ -40,16 +40,19 @@
   var heroSvg = document.getElementById("heroSilhouette");
   if (heroSvg && typeof DISTRICTS !== "undefined") {
     var hns = "http://www.w3.org/2000/svg";
+    var g = document.createElementNS(hns, "g");
+    g.setAttribute("transform", "translate(90,70) scale(1.08)");
     DISTRICTS.forEach(function (d) {
       var p = document.createElementNS(hns, "path");
       p.setAttribute("d", d.d);
       p.setAttribute("fill", "#E8720C");
-      p.setAttribute("fill-opacity", "0.10");
+      p.setAttribute("fill-opacity", "0.22");
       p.setAttribute("stroke", "#B4500A");
-      p.setAttribute("stroke-opacity", "0.18");
+      p.setAttribute("stroke-opacity", "0.4");
       p.setAttribute("stroke-width", "1.5");
-      heroSvg.appendChild(p);
+      g.appendChild(p);
     });
+    heroSvg.appendChild(g);
   }
 
   /* ---------- district map ---------- */
@@ -92,10 +95,12 @@
     tip.querySelector(".tip-count").innerHTML = "<b>" + c + "</b> students";
     tip.style.opacity = "1";
     var r = mapWrap.getBoundingClientRect();
-    tip.style.left = Math.min(x + 14, r.width - 180) + "px";
+    var tw = tip.offsetWidth || 180;
+    tip.style.left = Math.min(x + 14, Math.max(0, r.width - tw - 8)) + "px";
     tip.style.top = Math.max(y - 12, 8) + "px";
   }
-  function hideTip() { tip.style.opacity = "0"; }
+  function hideTip() { tip.style.opacity = "0"; openDistrict = null; }
+  var openDistrict = null;
 
   var total = 0;
   DISTRICTS.forEach(function (d) {
@@ -109,19 +114,33 @@
       showTip(d.name, e.clientX - r.left, e.clientY - r.top);
     });
     p.addEventListener("mouseleave", hideTip);
+    p.setAttribute("tabindex", "0");
+    p.setAttribute("role", "img");
+    p.setAttribute("aria-label", d.name + ", " + (counts[d.name] || 0) + " students");
     p.addEventListener("click", function (e) {
+      if (openDistrict === d.name) { hideTip(); clearTimeout(window.__mapTipT); return; }
+      openDistrict = d.name;
       var r = mapWrap.getBoundingClientRect();
       showTip(d.name, e.clientX - r.left, e.clientY - r.top);
       clearTimeout(window.__mapTipT);
       window.__mapTipT = setTimeout(hideTip, 2600);
     });
+    p.addEventListener("focus", function () {
+      openDistrict = d.name;
+      var r = mapWrap.getBoundingClientRect();
+      var b = p.getBoundingClientRect();
+      showTip(d.name, b.left - r.left + b.width / 2, b.top - r.top + b.height / 2);
+    });
+    p.addEventListener("blur", hideTip);
     svg.appendChild(p);
   });
 
   var totalEl = document.getElementById("studentTotal");
   if (totalEl) totalEl.textContent = total.toLocaleString("en-IN");
 
-  // legend swatches
+  // legend swatches — NOTE: colors rescale to the data range (mn..mx). When the real
+  // per-district counts land in data.js, the choropleth stretches to the new max automatically.
+
   var legend = document.getElementById("mapLegend");
   if (legend) {
     for (var i = 0; i < 7; i++) {
