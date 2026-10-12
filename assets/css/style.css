@@ -275,7 +275,7 @@ section.block { padding: 84px 0; }
 .member.m-bhagwa .monogram { background: var(--bhagwa); color: #fff; }
 .member.m-maroon .monogram { background: var(--maroon); color: var(--zari); }
 .member b { display: block; font-size: 1rem; color: var(--ink); }
-.member span { font-size: .82rem; color: var(--muted); }
+.member span { font-size: .82rem; color: var(--muted); line-height: 1.4; text-wrap: balance; display: block; margin-top: 2px; }
 .faculty-note { text-align: center; color: var(--muted); font-size: .9rem; margin-top: 22px; }
 
 /* ---------- join ---------- */
